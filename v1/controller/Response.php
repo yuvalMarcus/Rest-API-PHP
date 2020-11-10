@@ -26,9 +26,6 @@ class Response {
 
     public function send() {
 
-        //header('Context-type: application/json;charset=utf-8');
-        //header('Cache-control: no-cache, no-store');
-
         if (($this->_success !== true && $this->_success !== false) || !is_numeric($this->_httpStatusCode)) {
             http_response_code(500);
             $this->_responseData['statusCode'] = 500;
