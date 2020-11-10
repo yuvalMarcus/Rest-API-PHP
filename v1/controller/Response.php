@@ -8,7 +8,7 @@ class Response {
     private $_data;
     private $_responseData = [];
 
-    public function setSuccess($success): void {
+    public function setSuccess($success) {
         $this->_success = $success;
     }
 
@@ -24,7 +24,7 @@ class Response {
         $this->_data = $data;
     }
 
-    public function send() {
+    public function send(): void {
 
         if (($this->_success !== true && $this->_success !== false) || !is_numeric($this->_httpStatusCode)) {
             http_response_code(500);

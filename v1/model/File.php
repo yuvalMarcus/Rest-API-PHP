@@ -10,11 +10,11 @@ class File {
         $this->_patch = $_SERVER['DOCUMENT_ROOT'] . str_replace("/index.php", "", $_SERVER['URL'])  . "/model/files/";
     }
 
-    public function write($content) {
+    public function write($content): void {
         file_put_contents($this->_patch . $this->_name . ".txt", $content);
     }
     
-    public function read() {
+    public function read(): string {
         return file_get_contents($this->_patch . $this->_name . ".txt");
     }
 }

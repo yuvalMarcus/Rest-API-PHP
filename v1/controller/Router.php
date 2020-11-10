@@ -9,13 +9,13 @@ class Router {
     private $_choice;
 
     public function __construct() {
-        $url = $_GET['url'] ? $_GET['url'] : '';
+        $url = !empty($_GET['url']) ? $_GET['url'] : '';
         $this->_url = rtrim($url, '/');
         $this->_response = new Response();
         $this->_choice = false;
     }
 
-    public function get($url, $callback) {
+    public function get($url, $callback): void {
 
         if ($this->_choice)
             return;
@@ -30,7 +30,7 @@ class Router {
         }
     }
 
-    public function post($url, $callback) {
+    public function post($url, $callback): void {
 
         if ($this->_choice)
             return;
@@ -45,7 +45,7 @@ class Router {
         }
     }
 
-    public function end($callback) {
+    public function end($callback): void {
 
         if ($this->_choice)
             return;

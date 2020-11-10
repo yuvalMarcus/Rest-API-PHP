@@ -25,7 +25,7 @@ class XssClean {
      * @return  string  $output     Modified $input string
      */
 
-    public function clean_input($input, $safe_level = 0) {
+    public function clean_input($input, $safe_level = 0): string {
         $output = $input;
         do {
             // Treat $input as buffer on each loop, faster than new var
@@ -50,7 +50,7 @@ class XssClean {
      * @return  string  $input  Modified $input string
      */
 
-    private function strip_encoded_entities($input) {
+    private function strip_encoded_entities($input): string {
         // Fix &entity\n;
         $input = str_replace(array('&amp;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;lt;', '&amp;gt;'), $input);
         $input = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $input);
@@ -76,7 +76,7 @@ class XssClean {
      * @return  string  $input  Modified $input string
      */
 
-    private function strip_tags($input) {
+    private function strip_tags($input): string {
         // Remove tags
         $input = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $input);
         // Remove namespaced elements
@@ -95,7 +95,7 @@ class XssClean {
      * @return  string  $output     Modified & re-encoded $input string
      */
 
-    private function strip_base64($input) {
+    private function strip_base64($input): string {
         $decoded = base64_decode($input);
         $decoded = $this->strip_tags($decoded);
         $decoded = $this->strip_encoded_entities($decoded);
